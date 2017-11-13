@@ -3,3 +3,4 @@ node_modules
 !.gitignore
 !.editorconfig
 !.firebaserc
+!.circleci
