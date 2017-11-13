@@ -6,8 +6,8 @@ dependencies:
   pre:
     - node --version
     - npm --version
-    - npm install npm -g
-    - npm --version
+#    - npm install npm -g
+#    - npm --version
 
   cache_directories:
     - ~/.npm
@@ -17,8 +17,8 @@ deployment:
     branch: master
     commands:
       - npm run deploy
-test:
-  post:
-    - mkdir -p temp
-    - tar -cvzf temp/site.tgz .
-    - cp -a temp/site.tgz $CIRCLE_ARTIFACTS/s
+#test:
+#  post:
+#    - mkdir -p temp
+#    - tar -cvzf temp/site.tgz .
+#    - cp -a temp/site.tgz $CIRCLE_ARTIFACTS/s
