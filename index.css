@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600');
+
+@import url('/components/insight-page/insight-page.css');
+
+body {
+    background: #f9f9f9;
+    font: 14px 'Source Sans Pro', sans-serif;
+    color: #4a5356;
+}
+
+a {
+    color: inherit;
+}
+
+.page {
+    margin-left: 215px;
+    padding: 9px;
+}
+
+.error {
+    color: darkred;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.loading {
+    width: 20px;
+    height: 20px;
+    margin: 200px auto;
+    border-top: 10px solid #4a5356;
+    border-bottom: 10px solid #4a5356;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-radius: 50%;
+    animation: rotate 1s linear infinite;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

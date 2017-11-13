@@ -1,2 +1,4 @@
-# gather
-Bringing People And Data Together To Solve The Urban Sanitation Crisis.  http://gatherhub.org/
+Gather
+======
+
+Bringing people and data together to solve the urban sanitation crisis. http://gatherhub.org/
