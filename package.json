@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"No tests... All good then\" && exit 0",
     "serve": "http-server",
-    "deploy": "firebase deploy"
+    "deploy": "firebase deploy --token=$FIREBASE_TOKEN"
   },
   "repository": {
     "type": "git",
