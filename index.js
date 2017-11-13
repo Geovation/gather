@@ -11,3 +11,35 @@ System.config({
 })
 
 System.import('/components/routes.js').catch(console.error)
+
+
+// Firebase
+
+let config = {
+    apiKey: "AIzaSyBSJzvEjE66uQpjKw7hRDJWxHoyJ_lID_M",
+    authDomain: "gather-f7fb3.firebaseapp.com",
+    projectId: "gather-f7fb3",
+    storageBucket: "gather-f7fb3.appspot.com",
+};
+firebase.initializeApp(config);
+
+document.addEventListener('DOMContentLoaded', function() {
+    // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+    // // The Firebase SDK is initialized and available here!
+    //
+    // firebase.auth().onAuthStateChanged(user => { });
+    // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
+    // firebase.messaging().requestPermission().then(() => { });
+    // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
+    //
+    // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+
+    try {
+        let app = firebase.app();
+        let features = ['auth', 'storage'].filter(feature => typeof app[feature] === 'function');
+        console.log(`Firebase SDK loaded with ${features.join(', ')}`);
+    } catch (e) {
+        console.error(e);
+        console.log('Error loading the Firebase SDK, check the console.');
+    }
+});
