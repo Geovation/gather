@@ -1,5 +1,6 @@
 import React from 'react'
 import { default as HTML } from 'react-dom-factories'
+import Map from '/components/map/map.js'
 
 export default class InsightPage extends React.Component {
 
@@ -8,7 +9,10 @@ export default class InsightPage extends React.Component {
     }
 
     render() {
-        return HTML.div({ className: 'insight-page' }, 'Testing...')
+        return HTML.div({ className: 'insight-page' }, ...[
+            'Testing...',
+            React.createElement(Map, {})
+        ])
     }
 
 }
