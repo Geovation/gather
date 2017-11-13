@@ -41,8 +41,8 @@ jobs:
 
   deploy-job:
     docker:
-      - image: my-image
-    working_directory: /tmp/my-project
+      - image: circleci/node:latest
+#    working_directory: /tmp/my-project
     steps:
       - run:
         name: Deploy Master to Firebase
