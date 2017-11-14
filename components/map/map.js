@@ -25,8 +25,8 @@ export default class Map extends React.Component {
                     }
                 ]
             },
-            center: [36.8389256, -1.2589135],
-            zoom: 14
+            center: [36.875, -1.251],
+            zoom: 13
         })
     }
 
