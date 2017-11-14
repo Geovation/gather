@@ -1,0 +1,32 @@
+.topbar {
+    width: 100%;
+    height: 60px;
+    background: #f9f9f9;
+    box-shadow: 0 0 20px rgba(75, 83, 87, 0.25);
+}
+
+.topbar > .logo {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    background: #b91e5b;
+    margin-right: 30px;
+}
+
+.topbar > .logo img {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.topbar > h1 {
+    display: inline-block;
+    vertical-align: top;
+    margin: 0;
+    font-size: 14px;
+    line-height: 60px;
+}

@@ -10,7 +10,6 @@ export default class InsightPage extends React.Component {
 
     render() {
         return HTML.div({ className: 'insight-page' }, ...[
-            'Testing...',
             React.createElement(Map, {})
         ])
     }

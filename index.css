@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600');
 
+@import url('/components/topbar/topbar.css');
 @import url('/components/map/map.css');
 @import url('/components/menu-page/menu-page.css');
 @import url('/components/insight-page/insight-page.css');
 
 body {
-    background: #f9f9f9;
     margin: 0;
     font: 14px 'Source Sans Pro', sans-serif;
     color: #4a5356;

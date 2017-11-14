@@ -1,7 +1,10 @@
 @import url('https://unpkg.com/mapbox-gl@0.41.x/dist/mapbox-gl.css');
 
 .map {
-    min-width: 500px;
-    min-height: 500px;
-    filter: grayscale(100%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
 }
