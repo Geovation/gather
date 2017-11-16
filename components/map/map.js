@@ -12,7 +12,7 @@ export default class Map extends React.Component {
 
     componentDidMount() {
         const requests = this.props.data.map(each => {
-            return Object.assign(each, { data: fetch(each.location) })
+            return Object.assign(each, { data: fetch(each.location, { mode: 'no-cors' }) })
         })
         const responses = requests.map(each => {
             return each.data.then(response => response.json())
