@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"No tests... All good then\" && exit 0",
-    "serve": "http-server",
+    "serve": "live-server --port=8080 --entry-file=./index.html",
     "deploy": "firebase deploy --token=$FIREBASE_TOKEN"
   },
   "repository": {
@@ -20,6 +20,10 @@
   "homepage": "https://github.com/Geovation/gather#readme",
   "devDependencies": {
     "firebase-tools": "^3.15.0",
-    "http-server": "^0.10.0"
+    "http-server": "^0.10.0",
+    "live-server": "^1.2.0"
+  },
+  "dependencies": {
+    "8": "0.0.1"
   }
 }
