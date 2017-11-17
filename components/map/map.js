@@ -22,43 +22,25 @@ export default class Map extends React.Component {
     }
 
     setup(data) {
-        const sources = data.map(each => {
-            const output = {
-                type: 'geojson',
-                data: each.data
-            }
-            return { ['data-' + each.name]: output }
-        })
-        const layers = data.map(each => {
-            return {
-                id: each.name,
-                type: each.type,
-                source: 'data-' + each.name
-            }
-        })
-        new MapboxGL.Map({
+        const map = new MapboxGL.Map({
             container: ReactDOM.findDOMNode(this),
-            style: {
-                version: 8,
-                sources: {
-                    'osm': {
-                        type: 'raster',
-                        tiles: [window.location.protocol + '//tile.osm.org/{z}/{x}/{y}.png'],
-                        tileSize: 256
-                    },
-                    ...Object.assign(...sources)
-                },
-                layers: [
-                    {
-                        id: 'tiles',
-                        type: 'raster',
-                        source: 'osm'
-                    },
-                    ...layers
-                ]
-            },
+            style: "https://free.tilehosting.com/styles/basic/style.json?key=whjiogsLFRP3LYUHRMdF",
             center: this.props.centre,
             zoom: this.props.zoom
+        })
+
+        map.on('load', () => {
+
+            data.forEach(layer => {
+                map.addLayer({
+                    id: layer.name,
+                    type: layer.type,
+                    source: {
+                        type: 'geojson',
+                        data: layer.data
+                    }
+                })
+            })
         })
     }
 
