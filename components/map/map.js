@@ -43,7 +43,7 @@ export default class Map extends React.Component {
                 sources: {
                     'osm': {
                         type: 'raster',
-                        tiles: ['http://tile.osm.org/{z}/{x}/{y}.png'],
+                        tiles: [window.location.protocol + '//tile.osm.org/{z}/{x}/{y}.png'],
                         tileSize: 256
                     },
                     ...Object.assign(...sources)

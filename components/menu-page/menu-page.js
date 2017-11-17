@@ -28,7 +28,13 @@ export default class MenuPage extends React.Component {
             HTML.p({}, ...[
                 'The following file exists but you need to login to have access to it: ',
                 HTML.a({ href: 'https://firebasestorage.googleapis.com/v0/b/gather-f7fb3.appspot.com/o/db.json' }, 'Click me')
-            ])
+            ]),
+            HTML.p({},
+                HTML.a({ href : '/login' }, "login")
+            ),
+            HTML.p({},
+                HTML.a({ href : '/insight' }, "insight")
+            )
         ])
     }
 
