@@ -26,14 +26,14 @@ console.log(`Firebase SDK loaded with ${features.join(', ')}`)
 let user = null;
 
 Firebase.firebase.auth().onAuthStateChanged((_user) => {
-
-    // TODO: why it is not propagating ???
     user = _user
     if (user) {
         console.log("User logged in: ", user)
+        Page('/')
     } else {
         // No user is signed in.
         console.log("No user logged in")
+        Page('/login')
     }
 });
 // Firebase END
