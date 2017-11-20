@@ -2,6 +2,7 @@
 
 @import url('/components/topbar/topbar.css');
 @import url('/components/map/map.css');
+@import url('/components/login/login.css');
 @import url('/components/menu-page/menu-page.css');
 @import url('/components/insight-page/insight-page.css');
 

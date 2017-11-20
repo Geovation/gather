@@ -1,26 +1,7 @@
 import React from 'react'
 import { default as HTML } from 'react-dom-factories'
-import Firebase from 'firebase'
 
 export default class MenuPage extends React.Component {
-
-    constructor() {
-        super()
-        Firebase.firebase.initializeApp({
-            apiKey: 'AIzaSyBSJzvEjE66uQpjKw7hRDJWxHoyJ_lID_M',
-            authDomain: 'gather-f7fb3.firebaseapp.com',
-            projectId: 'gather-f7fb3',
-            storageBucket: 'gather-f7fb3.appspot.com'
-        })
-        try {
-            const app = Firebase.firebase.app()
-            const features = ['auth', 'storage'].filter(feature => typeof app[feature] === 'function')
-            console.log(`Firebase SDK loaded with ${features.join(', ')}`)
-        }
-        catch (e) {
-            console.error('Could not load Firebase', e)
-        }
-    }
 
     render() {
         return HTML.div({ className: 'Menu-page' }, ...[
@@ -30,7 +11,7 @@ export default class MenuPage extends React.Component {
                 HTML.a({ href: 'https://firebasestorage.googleapis.com/v0/b/gather-f7fb3.appspot.com/o/db.json' }, 'Click me')
             ]),
             HTML.p({},
-                HTML.a({ href : '/login' }, "login")
+                this.props.user ? `Hello ${this.props.user.email}` : HTML.a({ href : '/login' }, "login")
             ),
             HTML.p({},
                 HTML.a({ href : '/insight' }, "insight")
