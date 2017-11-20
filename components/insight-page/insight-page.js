@@ -15,9 +15,28 @@ export default class InsightPage extends React.Component {
             zoom: 13,
             data: [
                 {
+                    name: 'areas',
+                    type: 'fill',
+                    location: Config.data.areas,
+                    paint: {
+                        'fill-color': '#bc7991',
+                        'fill-opacity': 0.1
+                    }
+                },
+                {
+                    name: 'areas-outline',
+                    type: 'line',
+                    location: Config.data.areas,
+                    paint: {
+                        'line-color': '#bc7991',
+                        'line-width': 2
+                    }
+                },
+                {
                     name: 'sanitation',
                     type: 'heatmap',
-                    location: Config.data.sanitation
+                    location: Config.data.sanitation,
+                    paint: {}
                 }
             ]
         })

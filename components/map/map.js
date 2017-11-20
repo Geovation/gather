@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { default as HTML } from 'react-dom-factories'
 import MapboxGL from 'mapbox-gl'
+import Config from '/components/config.js'
 
 export default class Map extends React.Component {
 
@@ -24,13 +25,11 @@ export default class Map extends React.Component {
     setup(data) {
         const map = new MapboxGL.Map({
             container: ReactDOM.findDOMNode(this),
-            style: "https://free.tilehosting.com/styles/basic/style.json?key=whjiogsLFRP3LYUHRMdF",
+            style: 'https://free.tilehosting.com/styles/basic/style.json?key=' + Config.tilehostingKey,
             center: this.props.centre,
             zoom: this.props.zoom
         })
-
         map.on('load', () => {
-
             data.forEach(layer => {
                 map.addLayer({
                     id: layer.name,
@@ -38,7 +37,8 @@ export default class Map extends React.Component {
                     source: {
                         type: 'geojson',
                         data: layer.data
-                    }
+                    },
+                    paint: layer.paint
                 })
             })
         })
