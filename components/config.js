@@ -1,4 +1,10 @@
 export default {
+    firebase: {
+        apiKey: 'AIzaSyBSJzvEjE66uQpjKw7hRDJWxHoyJ_lID_M',
+        authDomain: 'gather-f7fb3.firebaseapp.com',
+        projectId: 'gather-f7fb3',
+        storageBucket: 'gather-f7fb3.appspot.com'
+    },
     tilehostingKey: 'whjiogsLFRP3LYUHRMdF',
     data: {
         areas: 'https://firebasestorage.googleapis.com/v0/b/gather-f7fb3.appspot.com/o/areas.geo.json?alt=media&token=264391c2-d13a-43c4-8cf3-dd581a3d3ecf',
