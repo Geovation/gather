@@ -2,12 +2,16 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { default as HTML } from 'react-dom-factories'
 import MapboxGL from 'mapbox-gl'
-import {Config} from '/common/config.js'
+import Config from '/common/config.js'
 
 export default class Map extends React.Component {
 
     constructor() {
         super()
+        this.state = {
+            config: null
+        }
+        Config.get().then(config => this.setState({ config }))
         this.setup = this.setup.bind(this)
     }
 
@@ -25,7 +29,7 @@ export default class Map extends React.Component {
     setup(data) {
         const map = new MapboxGL.Map({
             container: ReactDOM.findDOMNode(this),
-            style: 'https://free.tilehosting.com/styles/basic/style.json?key=' + Config.tilehostingKey,
+            style: 'https://free.tilehosting.com/styles/basic/style.json?key=' + this.state.config.tilehostingKey,
             center: this.props.centre,
             zoom: this.props.zoom
         })

@@ -21,9 +21,8 @@ function init() {
     console.log(`Firebase SDK loaded with ${features.join(', ')}`)
 
     // wait until when we know if the user is logged in
-    return new Promise( resolve => {
-        const unsubscribe = auth().onAuthStateChanged( user => {
-            console.log("User : ", user)
+    return new Promise(resolve => {
+        const unsubscribe = auth().onAuthStateChanged(user => {
             unsubscribe()
             resolve()
         })

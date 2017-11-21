@@ -1,7 +1,7 @@
 import React from 'react'
 import { default as HTML } from 'react-dom-factories'
 import Map from '/components/map/map.js'
-import { Config, init} from '/common/config.js'
+import Config from '/common/config.js'
 
 export default class InsightPage extends React.Component {
 
@@ -10,7 +10,7 @@ export default class InsightPage extends React.Component {
         this.state = {
             config: null
         }
-        init().then(() => this.setState({ config: Config }))
+        Config.get().then(config => this.setState({ config }))
     }
 
     render() {
