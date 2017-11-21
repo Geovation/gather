@@ -17,7 +17,6 @@ export default class Routes {
 
         function secure(context, next) {
             if (!FirebaseUtils.auth().currentUser) {
-                alert("You need to log in to see this page")
                 Page.redirect('/login')
             } else {
                 next()
