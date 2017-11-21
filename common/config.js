@@ -1,4 +1,4 @@
-import * as firebase from '/common/firebase.js'
+import FirebaseUtils from '/common/firebase-utils.js'
 
 // GS (Google Storage) path
 const dataGS = [ 'areas', 'sanitation' ]
@@ -11,7 +11,7 @@ function init() {
 
 
     const promiseGetNewUrls = new Promise( (resolve, reject) => {
-        firebase.database.ref('.info/connected').on("value", snap => {
+        FirebaseUtils.database.ref('.info/connected').on("value", snap => {
 
             // when online, refresh URL
             if (snap.val()) {
@@ -20,7 +20,7 @@ function init() {
                 dataGS.forEach( dataName => {
                     numOfDataBeingProcessed++
                     const gsName = `${dataName}.geo.json`
-                    firebase.storage.ref(gsName).getDownloadURL()
+                    FirebaseUtils.storage.ref(gsName).getDownloadURL()
                         .then( url => {
                             calculatedData[dataName] = url
                             numOfDataBeingProcessed--

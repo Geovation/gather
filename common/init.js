@@ -1,5 +1,5 @@
-import * as routes from '/common/routes.js'
-import * as firebase from '/common/firebase.js'
+import Routes from '/common/routes.js'
+import FirebaseUtils from '/common/firebase-utils.js'
 
-firebase.init()
-    .then(routes.init)
+FirebaseUtils.init()
+    .then(() => { new Routes()})

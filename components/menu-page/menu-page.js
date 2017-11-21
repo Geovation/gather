@@ -1,7 +1,7 @@
 import React from 'react'
 import { default as HTML } from 'react-dom-factories'
 
-import * as firebase from '/common/firebase.js'
+import FirebaseUtils from '/common/firebase-utils.js'
 
 export default class MenuPage extends React.Component {
 
@@ -13,7 +13,7 @@ export default class MenuPage extends React.Component {
                 HTML.a({ href: 'https://firebasestorage.googleapis.com/v0/b/gather-f7fb3.appspot.com/o/db.json' }, 'Click me')
             ]),
             HTML.p({},
-                firebase.auth().currentUser ? `Hello ${firebase.auth().currentUser.email}` : HTML.a({ href : '/login' }, "login")
+                FirebaseUtils.auth().currentUser ? `Hello ${FirebaseUtils.auth().currentUser.email}` : HTML.a({ href : '/login' }, "login")
             ),
             HTML.p({},
                 HTML.a({ href : '/insight' }, "insight")

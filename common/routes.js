@@ -8,16 +8,15 @@ import MenuPage from '/components/menu-page/menu-page.js'
 import InsightPage from '/components/insight-page/insight-page.js'
 import LoginForm from '/components/login/login.js'
 
-import * as firebase from '/common/firebase.js'
-// import * as config from "./config";
+import FirebaseUtils from '/common/firebase-utils.js'
 
-// Routing
-function init() {
+export default class Routes {
+    constructor() {
         const main = document.querySelector('main')
         const topbar = React.createElement(Topbar, {})
 
         function secure(context, next) {
-            if (!firebase.auth().currentUser) {
+            if (!FirebaseUtils.auth().currentUser) {
                 alert("You need to log in to see this page")
                 Page.redirect('/login')
             } else {
@@ -53,8 +52,5 @@ function init() {
         })
 
         Page()
-}
-
-export {
-    init
+    }
 }
