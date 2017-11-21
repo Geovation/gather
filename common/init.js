@@ -1,5 +1,5 @@
-import * as routes from '/common/routes.js'
-import * as firebase from '/common/firebase.js'
+import * as Routes from '/common/routes.js'
+import * as Firebase from '/common/firebase.js'
 
-firebase.init()
-    .then(routes.init)
+Firebase.init()
+    .then(Routes.init)

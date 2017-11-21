@@ -1,57 +1,33 @@
-import * as firebase from '/common/firebase.js'
+import * as Firebase from '/common/firebase.js'
 
-// GS (Google Storage) path
-const dataGS = [ 'areas', 'sanitation' ]
-const Config = {
-    tilehostingKey: 'whjiogsLFRP3LYUHRMdF',
-    data: {}
-}
+export default class Config {
 
-function init() {
-
-
-    const promiseGetNewUrls = new Promise( (resolve, reject) => {
-        firebase.database.ref('.info/connected').on("value", snap => {
-
-            // when online, refresh URL
-            if (snap.val()) {
-                let numOfDataBeingProcessed = 0
-                const calculatedData = {}
-                dataGS.forEach( dataName => {
-                    numOfDataBeingProcessed++
-                    const gsName = `${dataName}.geo.json`
-                    firebase.storage.ref(gsName).getDownloadURL()
-                        .then( url => {
-                            calculatedData[dataName] = url
-                            numOfDataBeingProcessed--
-                            if (!numOfDataBeingProcessed) {
-                                localStorage.setItem("cachedData", JSON.stringify(calculatedData))
-                                Config.data = calculatedData
-                                console.log("Local storage refreshed")
-                                resolve()
-                            }
-                        })
-                        .catch(reject)
-                })
+    static get() {
+        const defaults = {
+            tilehostingKey: 'whjiogsLFRP3LYUHRMdF',
+            dataFiles: {
+                areas: 'areas.geo.json',
+                sanitation: 'sanitation.geo.json'
             }
+        }
+        return new Promise((resolve, reject) => {
+            Firebase.database.ref('.info/connected').on('value', snap => {
+                if (!snap.val()) return
+                const requests = Object.keys(defaults.dataFiles).map(key => {
+                    return Firebase.storage.ref(defaults.dataFiles[key]).getDownloadURL().then(url => {
+                        return { [key]: url }
+                    })
+                })
+                Promise.all(requests)
+                    .then(results => {
+                        const data = Object.assign(...results)
+                        const output = Object.assign({ data }, defaults)
+                        this.get = () => Promise.resolve(output)
+                        resolve(output)
+                    })
+                    .catch(reject)
+            })
         })
-    });
-
-    // use localStorage first
-    try {
-        Config.data = JSON.parse(localStorage.getItem("cachedData"))
-    } catch (e) {
-        Config.data = null
     }
 
-    if (!Config.data) {
-        return promiseGetNewUrls
-    }
-
-    return Promise.resolve()
-}
-
-export {
-    init,
-    Config
 }

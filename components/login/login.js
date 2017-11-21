@@ -3,7 +3,7 @@ import { default as HTML } from 'react-dom-factories'
 import Page from 'page'
 
 import * as firebase from '/common/firebase.js'
-import * as config from '/common/config.js'
+import Config from '/common/config.js'
 
 export default class LoginForm extends React.Component {
     constructor() {
@@ -19,7 +19,7 @@ export default class LoginForm extends React.Component {
         firebase.auth().signInWithEmailAndPassword(event.target.elements.email.value, event.target.elements.password.value )
             .then((user) => {
                 console.log("logged in ", user)
-                config.init().then(() => Page('/'))
+                Config.get().then(() => Page('/'))
             })
             .catch((error) => {
                 alert(error)
