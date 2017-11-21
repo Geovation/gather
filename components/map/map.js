@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { default as HTML } from 'react-dom-factories'
 import MapboxGL from 'mapbox-gl'
-import Config from '/components/config.js'
+import {Config} from '/common/config.js'
 
 export default class Map extends React.Component {
 

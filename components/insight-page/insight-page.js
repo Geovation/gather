@@ -1,23 +1,27 @@
 import React from 'react'
 import { default as HTML } from 'react-dom-factories'
 import Map from '/components/map/map.js'
-import Config from '/components/config.js'
+import { Config, init} from '/common/config.js'
 
 export default class InsightPage extends React.Component {
 
     constructor() {
         super()
+        this.state = {
+            config: null
+        }
+        init().then(() => this.setState({ config: Config }))
     }
 
     render() {
-        const map = React.createElement(Map, {
+        const map = !this.state.config ? null : React.createElement(Map, {
             centre: [36.875, -1.251],
             zoom: 13,
             data: [
                 {
                     name: 'areas',
                     type: 'fill',
-                    location: Config.data.areas,
+                    location: this.state.config.data.areas,
                     paint: {
                         'fill-color': '#bc7991',
                         'fill-opacity': 0.1
@@ -26,7 +30,7 @@ export default class InsightPage extends React.Component {
                 {
                     name: 'areas-outline',
                     type: 'line',
-                    location: Config.data.areas,
+                    location: this.state.config.data.areas,
                     paint: {
                         'line-color': '#bc7991',
                         'line-width': 2
@@ -35,7 +39,7 @@ export default class InsightPage extends React.Component {
                 {
                     name: 'sanitation',
                     type: 'heatmap',
-                    location: Config.data.sanitation,
+                    location: this.state.config.data.sanitation,
                     paint: {
                         'heatmap-radius': 25,
                         'heatmap-color': [
