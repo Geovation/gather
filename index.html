@@ -4,6 +4,24 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <title>Gather</title>
+
+        <link rel="icon" type="image/x-icon" href="imgs/favicon.ico">
+        <link rel="manifest" href="manifest.json">
+        <meta name="theme-color" content="#4e8ef7">
+        <!-- Apple -->
+        <link rel="apple-touch-icon" href="imgs/favicon.ico" />
+        <link rel="apple-touch-startup-image" href="imgs/logo_apple.png">
+        <meta name="apple-mobile-web-app-title" content="Gather">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+
+        <script>
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('service-worker.js')
+                    .then(() => console.log('service worker installed'))
+                    .catch(err => console.log('Error', err));
+            }
+        </script>
+
         <link rel="stylesheet" href="/index.css"/>
         <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=es6,fetch"></script>
         <script src="https://unpkg.com/systemjs@0.20.x"></script>
