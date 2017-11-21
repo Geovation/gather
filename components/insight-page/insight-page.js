@@ -36,7 +36,17 @@ export default class InsightPage extends React.Component {
                     name: 'sanitation',
                     type: 'heatmap',
                     location: Config.data.sanitation,
-                    paint: {}
+                    paint: {
+                        'heatmap-radius': 25,
+                        'heatmap-color': [
+                            'interpolate',
+                            ['linear'],
+                            ['heatmap-density'],
+                            0, 'rgb(45, 52, 112)',
+                            0.005, 'rgb(45, 52, 112)',
+                            0.01, 'rgba(65, 124, 197, 0.2)'
+                        ]
+                    }
                 }
             ]
         })

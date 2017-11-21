@@ -6,7 +6,7 @@ System.config({
         'react': 'https://unpkg.com/react@16.1.x/umd/react.development.js',
         'react-dom': 'https://unpkg.com/react-dom@16.1.x/umd/react-dom.development.js',
         'react-dom-factories': 'https://unpkg.com/react-dom-factories@1.0.x',
-        'mapbox-gl': 'https://unpkg.com/mapbox-gl@0.41.x',
+        'mapbox-gl': 'https://unpkg.com/mapbox-gl@0.42.x',
         'firebase': 'https://unpkg.com/firebase@4.6.x/firebase.js'
     },
     transpiler: 'systemjs-plugin-babel'
