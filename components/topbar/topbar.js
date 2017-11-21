@@ -1,7 +1,5 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import { default as HTML } from 'react-dom-factories'
-import MapboxGL from 'mapbox-gl'
 
 export default class Topbar extends React.Component {
 

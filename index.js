@@ -12,4 +12,4 @@ System.config({
     transpiler: 'systemjs-plugin-babel'
 })
 
-System.import('/components/routes.js').catch(console.error)
+System.import('/common/init.js').catch(console.error)

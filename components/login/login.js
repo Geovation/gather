@@ -1,7 +1,9 @@
 import React from 'react'
 import { default as HTML } from 'react-dom-factories'
 import Page from 'page'
-import Firebase from 'firebase'
+
+import * as firebase from '/common/firebase.js'
+import * as config from '/common/config.js'
 
 export default class LoginForm extends React.Component {
     constructor() {
@@ -14,10 +16,10 @@ export default class LoginForm extends React.Component {
     handleSubmit(event) {
         this.setState({ disabled: true})
 
-        Firebase.firebase.auth().signInWithEmailAndPassword(event.target.elements.email.value, event.target.elements.password.value )
+        firebase.auth().signInWithEmailAndPassword(event.target.elements.email.value, event.target.elements.password.value )
             .then((user) => {
                 console.log("logged in ", user)
-                Page('/')
+                config.init().then(() => Page('/'))
             })
             .catch((error) => {
                 alert(error)
