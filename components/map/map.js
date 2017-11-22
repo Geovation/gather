@@ -27,7 +27,9 @@ export default class Map extends React.Component {
             container: ReactDOM.findDOMNode(this),
             style: 'https://free.tilehosting.com/styles/basic/style.json?key=' + Config.config.tilehostingKey,
             center: this.props.centre,
-            zoom: this.props.zoom
+            zoom: this.props.zoom,
+            minZoom: this.props.minZoom,
+            maxZoom: this.props.maxZoom
         })
         map.on('load', () => {
             data.forEach(layer => {
