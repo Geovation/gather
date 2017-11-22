@@ -1,57 +1,58 @@
-import * as firebase from '/common/firebase.js'
+import FirebaseUtils from '/common/firebase-utils.js'
 
-// GS (Google Storage) path
-const dataGS = [ 'areas', 'sanitation' ]
-const Config = {
-    tilehostingKey: 'whjiogsLFRP3LYUHRMdF',
-    data: {}
-}
+export default class Config {
+    static config = {
+        tilehostingKey: 'whjiogsLFRP3LYUHRMdF',
+        data: {
+            areas: null,
+            sanitation: null
+        }
+    }
 
-function init() {
+    static get() {
+        const promiseGetNewUrls = retrieveFreshUrls()
 
+        let localStorageData = null
+        try {
+            localStorageData = JSON.parse(localStorage.getItem("cachedData"))
+        } catch (e) {
+            console.log('localStorage corrupted')
+        }
 
-    const promiseGetNewUrls = new Promise( (resolve, reject) => {
-        firebase.database.ref('.info/connected').on("value", snap => {
+        if (!localStorageData) {
+            return promiseGetNewUrls
+        } else {
+            Config.config.data = localStorageData
+        }
 
-            // when online, refresh URL
-            if (snap.val()) {
-                let numOfDataBeingProcessed = 0
-                const calculatedData = {}
-                dataGS.forEach( dataName => {
-                    numOfDataBeingProcessed++
-                    const gsName = `${dataName}.geo.json`
-                    firebase.storage.ref(gsName).getDownloadURL()
-                        .then( url => {
-                            calculatedData[dataName] = url
-                            numOfDataBeingProcessed--
-                            if (!numOfDataBeingProcessed) {
-                                localStorage.setItem("cachedData", JSON.stringify(calculatedData))
-                                Config.data = calculatedData
-                                console.log("Local storage refreshed")
-                                resolve()
-                            }
+        return Promise.resolve(Config.config)
+
+        function retrieveFreshUrls() {
+            return new Promise((resolve, reject) => {
+                FirebaseUtils.database.ref('.info/connected').on("value", snap => {
+                    // when online, refresh URL
+                    if (snap.val()) {
+                        const dataKeys = Object.keys(Config.config.data)
+                        const urlsPromises = dataKeys.map( dataKey => {
+                            const gsName = `${dataKey}.geo.json`
+                            return FirebaseUtils.storage.ref(gsName).getDownloadURL()
                         })
-                        .catch(reject)
-                })
-            }
-        })
-    });
 
-    // use localStorage first
-    try {
-        Config.data = JSON.parse(localStorage.getItem("cachedData"))
-    } catch (e) {
-        Config.data = null
-    }
+                        return Promise.all(urlsPromises).then( urls => {
 
-    if (!Config.data) {
-        return promiseGetNewUrls
-    }
+                            Config.config.data = urls.reduce((pV, cV, cI) => {
+                                pV[dataKeys[cI]] = cV
+                                return pV
+                            }, {})
 
-    return Promise.resolve()
-}
+                            localStorage.setItem("cachedData", JSON.stringify(Config.config.data))
+                            console.log("Local storage refreshed")
 
-export {
-    init,
-    Config
+                            resolve(Config.config)
+                        })
+                    } // end if
+                }) // end firebase on
+            }) // end promise
+        } // end retrieveFreshUrls
+    } // end get
 }
