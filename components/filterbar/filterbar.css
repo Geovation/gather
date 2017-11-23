@@ -1,0 +1,55 @@
+.filterbar {
+    position: absolute;
+    right: 0;
+    top: 60px;
+    bottom: 0;
+    width: 300px;
+    background: white;
+    overflow-x: auto;
+}
+
+.filterbar > p {
+    margin: 20px 20px 0 20px;
+}
+
+.filterbar > p.major {
+    margin: 4px 20px 0 20px;
+    font-size: 28px;
+}
+
+.filterbar > h3 {
+    margin: 38px 20px 30px 20px;
+    border-bottom: 1px solid #e8e9e8;
+    padding: 0 0 10px 0;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.filterbar > ul {
+    margin: 20px 20px 0 20px;
+    padding-left: 17px;
+}
+
+.filterbar > ul li {
+    margin: 20px 0;
+}
+
+.filterbar > ol {
+    margin: 20px 20px 0 20px;
+    padding: 0;
+    list-style-type: none;
+}
+
+.filterbar > ol li {
+    margin-top: 15px;
+    color: #b91e5b;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.filterbar > ol li::before {
+    content: url('expand.svg');
+    display: inline-block;
+    transform: rotate(-90deg) scale(0.8);
+    margin-right: 2px;
+}
