@@ -1,6 +1,7 @@
 import React from 'react'
 import { default as HTML } from 'react-dom-factories'
 import Map from '/components/map/map.js'
+import Filterbar from '/components/filterbar/filterbar.js'
 import Config from '/common/config.js'
 
 export default class InsightPage extends React.Component {
@@ -78,8 +79,9 @@ export default class InsightPage extends React.Component {
                 }
             ]
         })
-        return HTML.div({ className: 'insight-page' }, ...[
-            map
+        return HTML.div({ className: 'page insight-page' }, ...[
+            map,
+            React.createElement(Filterbar, {})
         ])
     }
 
