@@ -12,7 +12,7 @@
     // Load the sw-toolbox library.
     importScripts('./sw-toolbox.js');
 
-    // global.toolbox.options.debug = true;
+    global.toolbox.options.debug = false;
 
     // pre-cache our key assets
     global.toolbox.precache(
