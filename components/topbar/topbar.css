@@ -30,3 +30,15 @@
     font-size: 14px;
     line-height: 60px;
 }
+
+.topbar > img.gravatar {
+    display: inline-block;
+    vertical-align: top;
+    margin: 0;
+    height: 100%;
+}
+
+.right {
+    float: right;
+    margin-left: 3px !important;;
+}

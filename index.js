@@ -7,7 +7,12 @@ System.config({
         'react-dom': 'https://unpkg.com/react-dom@16.1.x/umd/react-dom.development.js',
         'react-dom-factories': 'https://unpkg.com/react-dom-factories@1.0.x',
         'mapbox-gl': 'https://unpkg.com/mapbox-gl@0.42.x',
-        'firebase': 'https://unpkg.com/firebase@4.6.x/firebase.js'
+        'firebase': 'https://unpkg.com/firebase@4.6.x/firebase.js',
+        'md5': 'https://unpkg.com/md5',
+        'crypt': 'https://unpkg.com/crypt',         // it is md5 dependency
+        'charenc': 'https://unpkg.com/charenc',     // it is md5 dependency
+        'is-buffer': 'https://unpkg.com/is-buffer', // it is md5 dependency
+        'fetch-jsonp': 'https://unpkg.com/fetch-jsonp'
     },
     transpiler: 'systemjs-plugin-babel'
 })

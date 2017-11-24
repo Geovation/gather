@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"No tests... All good then\" && exit 0",
-    "serve": "live-server --port=8080 --entry-file=./index.html --ignore=.idea,.git",
+    "serve": "live-server --entry-file=./index.html --ignore=.idea,.git",
     "deploy": "firebase deploy --token=$FIREBASE_TOKEN"
   },
   "repository": {
