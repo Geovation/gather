@@ -12,12 +12,19 @@
     // Load the sw-toolbox library.
     importScripts('./sw-toolbox.js');
 
+    // global.toolbox.options.debug = true;
+
     // pre-cache our key assets
     global.toolbox.precache(
         [
             'index.html',
             'manifest.json'
         ]);
+
+    /***** CACHE FIRST *****/
+    // The images don't change to much. So there is not need to retrieve them everytime
+    // https://free.tilehosting.com/data/v3/13/4936/4123.pbf.pict?key=whjiogsLFRP3LYUHRMdF
+    global.toolbox.router.any(/^https:\/\/free\.tilehosting\.com\/.*/, self.toolbox.cacheFirst);
 
     /***** FASTEST *****/
     // all the rest will get from cache or network, whatever is faster

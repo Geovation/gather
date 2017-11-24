@@ -17,7 +17,8 @@ export default class Topbar extends React.Component {
         }
 
         const hash = MD5(FirebaseUtils.auth().currentUser.email.toLowerCase())
-        FetchJsonp(`https://www.gravatar.com/${hash}.json`)
+        // need to set the callback function as the default is a randomnuber: otherwise it will never be cached.
+        FetchJsonp(`https://www.gravatar.com/${hash}.json`, { jsonpCallbackFunction: 'jsonp_response' })
             .then(response => response.json())
             .then(a => this.setState(a.entry[0]))
     }
