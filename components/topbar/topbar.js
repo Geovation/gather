@@ -1,7 +1,7 @@
 import React from 'react'
 import { default as HTML } from 'react-dom-factories'
-import md5 from 'md5'
-import fetchJsonp from 'fetch-jsonp'
+import MD5 from 'md5'
+import FetchJsonp from 'fetch-jsonp'
 
 import FirebaseUtils from '/common/firebase-utils.js'
 
@@ -16,8 +16,8 @@ export default class Topbar extends React.Component {
             }
         }
 
-        const hash = md5(FirebaseUtils.auth().currentUser.email.toLowerCase())
-        fetchJsonp(`https://www.gravatar.com/${hash}.json`)
+        const hash = MD5(FirebaseUtils.auth().currentUser.email.toLowerCase())
+        FetchJsonp(`https://www.gravatar.com/${hash}.json`)
             .then(response => response.json())
             .then(a => this.setState(a.entry[0]))
     }
@@ -27,8 +27,8 @@ export default class Topbar extends React.Component {
             HTML.a({ className: 'logo', href: '/' }, HTML.img({ src: '/logo.svg' })),
             HTML.h1({}, 'Gather prototype'),
             this.state.thumbnailUrl ? HTML.img({ className: 'right gravatar', src: this.state.thumbnailUrl } ) : null,
-            HTML.h1({ className: 'right' }, `<${FirebaseUtils.auth().currentUser.email}>`),
-            this.state.name && this.state.name.formatted ? HTML.h1({ className: 'right' }, `${this.state.name.formatted}`): null
+            HTML.h2({ className: 'right' }, `<${FirebaseUtils.auth().currentUser.email}>`),
+            this.state.name && this.state.name.formatted ? HTML.h2({ className: 'right' }, `${this.state.name.formatted}`): null
         ])
     }
 

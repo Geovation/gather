@@ -33,12 +33,19 @@
 
 .topbar > img.gravatar {
     display: inline-block;
+    float: right;
     vertical-align: top;
-    margin: 0;
+    margin: 0 0 0 3px;
     height: 100%;
 }
 
-.right {
+
+.topbar > h2 {
     float: right;
-    margin-left: 3px !important;;
+    display: inline-block;
+    vertical-align: top;
+    font-size: 14px;
+    line-height: 60px;
+    margin: 0 0 0 3px;
 }
+
