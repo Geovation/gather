@@ -25,7 +25,7 @@ export default class Map extends React.Component {
     setup(data) {
         const map = new MapboxGL.Map({
             container: ReactDOM.findDOMNode(this),
-            style: 'https://free.tilehosting.com/styles/basic/style.json?key=' + Config.config.tilehostingKey,
+            style: 'https://free.tilehosting.com/styles/basic/style.json?key=' + Config.get().tilehostingKey,
             center: this.props.centre,
             zoom: this.props.zoom,
             minZoom: this.props.minZoom,
