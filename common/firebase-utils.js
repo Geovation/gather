@@ -1,11 +1,10 @@
 import Firebase from 'firebase'
 
 export default class FirebaseUtils {
+
     static auth = null
     static storage = null
     static database = null
-
-    // public ready
 
     static init() {
         Firebase.firebase.initializeApp({
@@ -21,13 +20,20 @@ export default class FirebaseUtils {
         FirebaseUtils.database = Firebase.firebase.database()
 
         // wait until when we know if the user is logged in
-        return new Promise( resolve => {
-            const unsubscribe = FirebaseUtils.auth().onAuthStateChanged( user => {
-                console.log("User : ", user)
+        return new Promise(resolve => {
+            const unsubscribe = FirebaseUtils.auth().onAuthStateChanged(user => {
                 unsubscribe()
                 resolve()
             })
         })
     }
-}
 
+    static resolveFile(filename) {
+        return new Promise((resolve, reject) => {
+            FirebaseUtils.database.ref('.info/connected').on('value', snap => {
+                return FirebaseUtils.storage.ref(filename).getDownloadURL().then(resolve).catch(reject)
+            })
+        })
+    }
+
+}

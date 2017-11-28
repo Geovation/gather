@@ -9,6 +9,8 @@ import InsightPage from '/components/insight-page/insight-page.js'
 import LoginForm from '/components/login/login.js'
 
 import FirebaseUtils from '/common/firebase-utils.js'
+import Config from '/common/config.js'
+
 
 export default class Routes {
     constructor() {
@@ -19,7 +21,8 @@ export default class Routes {
             if (!FirebaseUtils.auth().currentUser) {
                 Page.redirect('/login')
             } else {
-                next()
+                if (Config.isLoaded()) next()
+                else Config.load().then(next)
             }
         }
 

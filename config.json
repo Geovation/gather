@@ -1,0 +1,13 @@
+{
+    "tilehostingKey": "whjiogsLFRP3LYUHRMdF",
+    "data": [
+        {
+            "name": "Kenya",
+            "files": {
+                "areas": "ke-areas.geo.json",
+                "population": "ke-population.geo.tiff",
+                "toilets": "ke-toilets.geo.json"
+            }
+        }
+    ]
+}
