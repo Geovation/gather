@@ -7,7 +7,11 @@
                 "areas": "ke-areas.geo.json",
                 "population": "ke-population.geo.tiff",
                 "toilets": "ke-toilets.geo.json"
-            }
+            },
+            "basicSharedSanitationAccess": 3,
+            "peoplePerToilet": 1800,
+            "handwashingFacilities": 19,
+            "faecalSludgeManagementServices": 100
         }
     ]
 }

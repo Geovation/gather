@@ -82,9 +82,13 @@ export default class InsightPage extends React.Component {
             maxZoom: 18,
             data: mapData
         })
+
+        // TODO: it will be fixed when the user can select an area from the menu.
+        const selectedArea = 0
+
         return HTML.div({ className: 'page insight-page' }, ...[
             map,
-            React.createElement(Filterbar, {})
+            React.createElement(Filterbar, Config.get().data[selectedArea] )
         ])
     }
 

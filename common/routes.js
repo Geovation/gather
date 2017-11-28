@@ -21,7 +21,7 @@ export default class Routes {
             if (!FirebaseUtils.auth().currentUser) {
                 Page.redirect('/login')
             } else {
-                if (Config.isLoaded()) next()
+                if (Config.isLoaded) next()
                 else Config.load().then(next)
             }
         }

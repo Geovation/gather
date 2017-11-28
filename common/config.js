@@ -3,6 +3,8 @@ import config from '/config.json'
 
 export default class Config {
 
+    static isLoaded = false
+
     static get() {
         const cached = localStorage.getItem('cachedData')
         if (cached) return JSON.parse(cached)
@@ -26,15 +28,9 @@ export default class Config {
             .then(data => {
                 const configResolved = Object.assign({ data }, config)
                 localStorage.setItem('cachedData', JSON.stringify(configResolved))
+                Config.isLoaded = true
                 return configResolved
             })
             .catch(console.error)
     }
-
-    static isLoaded() {
-        const cached = localStorage.getItem('cachedData')
-        if (cached) return true
-        else return false
-    }
-
 }
