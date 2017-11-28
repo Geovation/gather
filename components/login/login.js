@@ -3,7 +3,6 @@ import { default as HTML } from 'react-dom-factories'
 import Page from 'page'
 
 import FirebaseUtils from '/common/firebase-utils.js'
-import Config from '/common/config.js'
 
 export default class LoginForm extends React.Component {
     constructor() {
@@ -44,4 +43,3 @@ export default class LoginForm extends React.Component {
         ) // </div>
     }
 }
-

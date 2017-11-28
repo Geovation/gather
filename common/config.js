@@ -6,7 +6,7 @@ export default class Config {
     static get() {
         const cached = localStorage.getItem('cachedData')
         if (cached) return JSON.parse(cached)
-        else throw Exception('Trying to get config before it has been loaded!')
+        else throw new Error('Trying to get config before it has been loaded!')
     }
 
     static load() {
@@ -29,6 +29,12 @@ export default class Config {
                 return configResolved
             })
             .catch(console.error)
+    }
+
+    static isLoaded() {
+        const cached = localStorage.getItem('cachedData')
+        if (cached) return true
+        else return false
     }
 
 }
