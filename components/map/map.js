@@ -52,7 +52,7 @@ export default class Map extends React.Component {
                 source: {
                     type: "raster",
                     tiles: [
-                        "http://maps.worldpop.org.uk/tilesets/global-1km//{z}/{x}/{y}.png"
+                        "http://maps.worldpop.org.uk/tilesets/wp-global-100m-ppp-2010-adj/{z}/{x}/{y}.png"
                     ],
                     tileSize: 256
                 },
