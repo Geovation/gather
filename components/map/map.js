@@ -43,6 +43,24 @@ export default class Map extends React.Component {
                     paint: layer.paint
                 })
             })
+
+            // TODO: this needs to be move in the right place.
+            // TODO: move this in the config
+            const layer = {
+                id: "world population",
+                type: "raster",
+                source: {
+                    type: "raster",
+                    tiles: [
+                        "http://maps.worldpop.org.uk/tilesets/global-1km//{z}/{x}/{y}.png"
+                    ],
+                    tileSize: 256
+                },
+                paint: {
+                    "raster-opacity": 0.4
+                }
+            }
+            map.addLayer(layer)
         })
     }
 
