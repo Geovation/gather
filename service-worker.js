@@ -25,6 +25,7 @@
     // The images don't change to much. So there is not need to retrieve them everytime
     // https://free.tilehosting.com/data/v3/13/4936/4123.pbf.pict?key=whjiogsLFRP3LYUHRMdF
     global.toolbox.router.any(/^https:\/\/free\.tilehosting\.com\/.*/, self.toolbox.cacheFirst);
+    global.toolbox.router.any(/^https:\/\/maps\.worldpop\.org\.uk\/.*/, self.toolbox.cacheFirst);
 
     /***** FASTEST *****/
     // all the rest will get from cache or network, whatever is faster
