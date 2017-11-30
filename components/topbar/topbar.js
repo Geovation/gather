@@ -25,7 +25,7 @@ export default class Topbar extends React.Component {
 
     render() {
         return HTML.div({ className: 'topbar' }, ...[
-            HTML.a({ className: 'logo', href: '/' }, HTML.img({ src: '/logo.svg' })),
+            HTML.a({ className: 'logo', href: '/' }, HTML.img({ src: 'images/logo.svg' })),
             HTML.h1({}, 'Gather prototype'),
             this.state.thumbnailUrl ? HTML.img({ className: 'right gravatar', src: this.state.thumbnailUrl } ) : null,
             HTML.h2({ className: 'right' }, `<${FirebaseUtils.auth().currentUser.email}>`),
