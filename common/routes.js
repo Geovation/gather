@@ -4,7 +4,6 @@ import { default as HTML } from 'react-dom-factories'
 import Page from 'page'
 
 import Topbar from '/components/topbar/topbar.js'
-import MenuPage from '/components/menu-page/menu-page.js'
 import InsightPage from '/components/insight-page/insight-page.js'
 import LoginForm from '/components/login/login.js'
 
