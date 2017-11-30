@@ -6,9 +6,12 @@ import Config from '/common/config.js'
 
 export default class Map extends React.Component {
 
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.setup = this.setup.bind(this)
+
+        this.populationLayer = Config.get().populationLayer
+        this.map = null
     }
 
     componentDidMount() {
@@ -22,8 +25,14 @@ export default class Map extends React.Component {
         Promise.all(responses).then(this.setup)
     }
 
+    componentWillReceiveProps(newProps) {
+        if (newProps.populationLayer) this.map.setLayoutProperty(this.populationLayer.id, 'visibility', 'visible')
+        else this.map.setLayoutProperty(this.populationLayer.id, 'visibility', 'none')
+    }
+
+
     setup(data) {
-        const map = new MapboxGL.Map({
+        this.map = new MapboxGL.Map({
             container: ReactDOM.findDOMNode(this),
             style: 'https://free.tilehosting.com/styles/basic/style.json?key=' + Config.get().tilehostingKey,
             center: this.props.centre,
@@ -31,9 +40,9 @@ export default class Map extends React.Component {
             minZoom: this.props.minZoom,
             maxZoom: this.props.maxZoom
         })
-        map.on('load', () => {
+        this.map.on('load', () => {
             data.forEach(layer => {
-                map.addLayer({
+                this.map.addLayer({
                     id: layer.name,
                     type: layer.type,
                     source: {
@@ -44,23 +53,7 @@ export default class Map extends React.Component {
                 })
             })
 
-            // TODO: this needs to be move in the right place.
-            // TODO: move this in the config
-            const layer = {
-                id: "world population",
-                type: "raster",
-                source: {
-                    type: "raster",
-                    tiles: [
-                        "http://maps.worldpop.org.uk/tilesets/wp-global-100m-ppp-2010-adj/{z}/{x}/{y}.png"
-                    ],
-                    tileSize: 256
-                },
-                paint: {
-                    "raster-opacity": 0.4
-                }
-            }
-            map.addLayer(layer)
+            this.map.addLayer(this.populationLayer)
         })
     }
 

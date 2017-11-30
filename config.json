@@ -5,7 +5,6 @@
             "name": "Kenya",
             "files": {
                 "areas": "ke-areas.geo.json",
-                "population": "ke-population.geo.tiff",
                 "toilets": "ke-toilets.geo.json"
             },
             "basicSharedSanitationAccess": 3,
@@ -13,5 +12,22 @@
             "handwashingFacilities": 19,
             "faecalSludgeManagementServices": 100
         }
-    ]
+    ],
+    "populationLayer": {
+        "id": "world population",
+        "type": "raster",
+        "source": {
+            "type": "raster",
+            "tiles": [
+                "http://maps.worldpop.org.uk/tilesets/wp-global-100m-ppp-2010-adj/{z}/{x}/{y}.png"
+            ],
+            "tileSize": 256
+        },
+        "paint": {
+            "raster-opacity": 0.4
+        },
+        "layout": {
+            "visibility": "none"
+        }
+    }
 }

@@ -8,6 +8,10 @@ export default class InsightPage extends React.Component {
 
     constructor() {
         super()
+        this.state = {
+            populationLayer: Config.get().populationLayer.layout.visibility === 'visible'
+        }
+        this.setPopulationLayer = this.setPopulationLayer.bind(this)
     }
 
     metresToPixels(metres, latitude, zoom) {
@@ -80,7 +84,8 @@ export default class InsightPage extends React.Component {
             zoom: 13,
             minZoom: 8,
             maxZoom: 18,
-            data: mapData
+            data: mapData,
+            populationLayer: this.state.populationLayer
         })
 
         // TODO: it will be fixed when the user can select an area from the menu.
@@ -88,8 +93,14 @@ export default class InsightPage extends React.Component {
 
         return HTML.div({ className: 'page insight-page' }, ...[
             map,
-            React.createElement(Filterbar, Config.get().data[selectedArea] )
+            React.createElement(Filterbar, { data: Config.get().data[selectedArea], setPopulationLayer: this.setPopulationLayer, populationLayer: this.state.populationLayer } )
         ])
+    }
+
+    setPopulationLayer(populationLayer) {
+        this.setState({
+            populationLayer
+        })
     }
 
 }
