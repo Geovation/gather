@@ -26,12 +26,7 @@ export default class Routes {
             }
         }
 
-        Page('/', secure, context => {
-            const page = React.createElement(MenuPage)
-            main.classList.remove('loading')
-            ReactDOM.render(HTML.div({}, page), main)
-            window.scrollTo(0, 0)
-        })
+        Page('/', secure, context => Page.redirect('/insight'))
 
         Page('/insight', secure, context => {
             const page = React.createElement(InsightPage, {})
