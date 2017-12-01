@@ -5,7 +5,7 @@ export default class Filterbar extends React.Component {
 
     render() {
         return HTML.div({ className: 'filterbar' }, ...[
-            HTML.p({}, 'Basic shared sanitation access:'),
+            HTML.p({}, 'Shared sanitation access:'),
             HTML.p({ className: 'major' }, `${this.props.data.basicSharedSanitationAccess} %`),
             HTML.h3({}, 'Key investment areas:'),
             HTML.ol({}, ...[
