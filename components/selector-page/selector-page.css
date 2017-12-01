@@ -1,0 +1,27 @@
+.selector-page > .dialog {
+    max-height: calc(100vh - 262px);
+    overflow-y: auto;
+    position: relative;
+    top: 75px;
+    left: 75px;
+    display: inline-block;
+    width: 280px;
+    background: white;
+    border-radius: 8px;
+    padding: 26px 30px;
+    box-shadow: 0 7px 6px 0 rgba(0, 0, 0, 0.05);
+}
+
+.selector-page > .dialog h2 {
+    margin: 0;
+    font-size: 14px;
+}
+
+.selector-page > .dialog .chooser {
+    margin-top: 20px;
+}
+
+.selector-page > .dialog button {
+    float: right;
+    margin-top: 20px;
+}

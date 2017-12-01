@@ -1,0 +1,64 @@
+.chooser {
+    display: block;
+}
+
+.chooser > .header {
+    border-bottom: 1px solid #e2e2e2;
+    padding: 10px 0;
+    cursor: pointer;
+}
+
+.chooser.unselectable > .header {
+    cursor: not-allowed;
+}
+
+.chooser > .header::after {
+    content: '►';
+    float: right;
+    color: #919598;
+}
+
+.chooser.selecting > .header::after {
+    content: '▼';
+    color: inherit;
+}
+
+.chooser.selected > .header::after {
+    color: inherit;
+}
+
+.chooser > .header .title {
+    color: #919598;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.chooser.selecting > .header .title {
+    color: inherit;
+}
+
+.chooser.selected > .header .title {
+    color: inherit;
+}
+
+.chooser > .header .chosen {
+    font-size: 16px;
+}
+
+.chooser > .header .state {
+    color: #919598;
+    font-size: 14px;
+}
+
+.chooser > ol {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.chooser > ol li {
+    margin: 15px 0;
+    font-size: 26px;
+    font-weight: 600;
+    cursor: pointer;
+}

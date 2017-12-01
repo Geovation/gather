@@ -16,8 +16,8 @@ export default class Filterbar extends React.Component {
             HTML.p({ className: 'population'}, 'Population layer',
                 HTML.input({
                     type: 'checkbox',
-                    checked: this.props.populationLayer,
-                    onChange: () => this.props.setPopulationLayer(!this.props.populationLayer)
+                    checked: this.props.showPopulation,
+                    onChange: this.props.togglePopulation
                 })),
             HTML.h3({}, 'Statistics:'),
             HTML.ul({}, ...[

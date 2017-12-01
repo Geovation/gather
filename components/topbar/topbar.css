@@ -6,8 +6,8 @@
 }
 
 .topbar > .logo {
-    position: relative;
     display: inline-block;
+    vertical-align: top;
     width: 60px;
     height: 60px;
     background: #b91e5b;
@@ -15,30 +15,42 @@
 }
 
 .topbar > .logo img {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
+    display: block;
+    margin: 14px auto;
 }
 
-.topbar > h1 {
+.topbar > .selector {
     display: inline-block;
-    vertical-align: top;
-    margin: 0;
-    font-size: 14px;
-    line-height: 60px;
+    background: #f1f2f5;
+    margin: 15px 0;
+    border-radius: 42px;
+    padding: 6px 34px;
+    color: #bebfc2;
+    text-decoration: none;
 }
 
-.topbar > img.gravatar {
-    display: inline-block;
-    float: right;
-    vertical-align: top;
-    margin: 0 0 0 3px;
-    height: 100%;
+.topbar > .selector:active {
+    background: #bebfc2;
+    color: #f1f2f5;
 }
 
+.topbar > .viewing {
+    margin-left: 15px;
+    border-left: 1px solid #e7ebef;
+    padding: 6px 0 6px 15px;
+    font-weight: 600;
+    font-style: italic;
+}
+
+.topbar > .breadcrumbs {
+    color: #818584;
+    font-style: italic
+}
+
+.topbar > .breadcrumbs span {
+    padding: 0 4px;
+    text-decoration: underline;
+}
 
 .topbar > h2 {
     float: right;
@@ -46,6 +58,14 @@
     vertical-align: top;
     font-size: 14px;
     line-height: 60px;
-    margin: 0 0 0 3px;
+    margin: 0 10px 0 0;
 }
 
+.topbar > img.avatar {
+    float: right;
+    display: inline-block;
+    height: calc(100% - 20px);
+    margin: 6px 22px 0 0;
+    border: 4px solid #e0e3ea;
+    border-radius: 50%;
+}
