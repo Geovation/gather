@@ -6,55 +6,49 @@ import Config from '/common/config.js'
 
 export default class Map extends React.Component {
 
-    constructor(props) {
-        super(props)
+    constructor() {
+        super()
+        this.resolve = this.resolve.bind(this)
         this.setup = this.setup.bind(this)
-
-        this.populationLayer = Config.get().populationLayer
-        this.map = null
     }
 
     componentDidMount() {
-        const requests = this.props.data.map(each => {
-            return Object.assign(each, { data: fetch(each.location) })
-        })
-        const responses = requests.map(each => {
-            return each.data.then(response => response.json())
-                .then(data => Object.assign(each, { data }))
-        })
-        Promise.all(responses).then(this.setup)
+        this.resolve()
     }
 
-    componentWillReceiveProps(newProps) {
-        if (newProps.populationLayer) this.map.setLayoutProperty(this.populationLayer.id, 'visibility', 'visible')
-        else this.map.setLayoutProperty(this.populationLayer.id, 'visibility', 'none')
+    shouldComponentUpdate(nextProps) {
+        return this.props.data.length !== nextProps.data.length
     }
 
+    componentDidUpdate() {
+        this.resolve()
+    }
+
+    resolve() {
+        const requests = this.props.data.map(item => {
+            if (!item.source.location) return Promise.resolve(item)
+            else return fetch(item.source.location)
+                .then(response => response.json())
+                .then(data => Object.assign(item, { source: { type: item.source.type, data } }))
+        })
+        Promise.all(requests).then(this.setup)
+    }
 
     setup(data) {
-        this.map = new MapboxGL.Map({
+        const isMovable = this.props.isFixed ? !this.props.isFixed : true
+        const map = new MapboxGL.Map({
             container: ReactDOM.findDOMNode(this),
             style: 'https://free.tilehosting.com/styles/basic/style.json?key=' + Config.get().tilehostingKey,
             center: this.props.centre,
             zoom: this.props.zoom,
             minZoom: this.props.minZoom,
-            maxZoom: this.props.maxZoom
+            maxZoom: this.props.maxZoom,
+            scrollZoom: isMovable,
+            boxZoom: isMovable,
+            dragRotate: isMovable,
+            dragPan: isMovable
         })
-        this.map.on('load', () => {
-            data.forEach(layer => {
-                this.map.addLayer({
-                    id: layer.name,
-                    type: layer.type,
-                    source: {
-                        type: 'geojson',
-                        data: layer.data
-                    },
-                    paint: layer.paint
-                })
-            })
-
-            this.map.addLayer(this.populationLayer)
-        })
+        map.on('load', () => data.forEach(item => map.addLayer(item)))
     }
 
     render() {

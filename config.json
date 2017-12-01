@@ -1,33 +1,32 @@
 {
     "tilehostingKey": "whjiogsLFRP3LYUHRMdF",
-    "data": [
+    "countries": [
         {
-            "name": "Kenya",
-            "files": {
-                "areas": "ke-areas.geo.json",
-                "toilets": "ke-toilets.geo.json"
-            },
-            "basicSharedSanitationAccess": 3,
-            "peoplePerToilet": 1800,
-            "handwashingFacilities": 19,
-            "faecalSludgeManagementServices": 100
+            "id": "ke",
+            "name": "Kenya"
         }
     ],
-    "populationLayer": {
-        "id": "world population",
-        "type": "raster",
-        "source": {
-            "type": "raster",
-            "tiles": [
-                "http://maps.worldpop.org.uk/tilesets/wp-global-100m-ppp-2010-adj/{z}/{x}/{y}.png"
-            ],
-            "tileSize": 256
-        },
-        "paint": {
-            "raster-opacity": 0.4
-        },
-        "layout": {
-            "visibility": "none"
+    "cities": [
+        {
+            "id": "nbo",
+            "name": "Nairobi",
+            "country": "ke"
         }
-    }
+    ],
+    "slums": [
+        {
+            "name": "Mathare",
+            "city": "nbo",
+            "files": {
+                "outline": "ke-nbo-mathare-outline.geo.json",
+                "toilets": "ke-nbo-mathare-toilets.geo.json"
+            },
+            "stats": {
+                "basicSharedSanitationAccess": 3,
+                "peoplePerToilet": 1800,
+                "handwashingFacilities": 19,
+                "faecalSludgeManagementServices": 100
+            }
+        }
+    ]
 }

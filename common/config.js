@@ -12,16 +12,16 @@ export default class Config {
     }
 
     static load() {
-        const dataFromFirebase = config.data.map(country => {
-            const resolved = Object.keys(country.files).map(key => {
-                const file = country.files[key]
+        const dataFromFirebase = config.slums.map(slum => {
+            const resolved = Object.keys(slum.files).map(key => {
+                const file = slum.files[key]
                 return FirebaseUtils.resolveFile(file).then(url => {
                     return { [key]: url }
                 })
             })
             return Promise.all(resolved).then(results => {
                 const files = Object.assign(...results)
-                return Object.assign(country, { files })
+                return Object.assign(slum, { files })
             })
         })
         return Promise.all(dataFromFirebase)
