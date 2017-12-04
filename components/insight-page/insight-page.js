@@ -90,7 +90,7 @@ export default class InsightPage extends React.Component {
             type: 'raster',
             source: {
                 type: 'raster',
-                tiles: ['http://maps.worldpop.org.uk/tilesets/wp-global-100m-ppp-2010-adj/{z}/{x}/{y}.png'],
+                tiles: ['https://www.geodata.soton.ac.uk/tilesets/wp-global-100m-ppp-2010-adj/{z}/{x}/{y}.png'],
                 tileSize: 256
             },
             paint: {
