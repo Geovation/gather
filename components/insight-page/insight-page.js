@@ -3,7 +3,6 @@ import React from 'react'
 import { default as HTML } from 'react-dom-factories'
 import Map from '/components/map/map.js'
 import Filterbar from '/components/filterbar/filterbar.js'
-import Config from '/common/config.js'
 
 export default class InsightPage extends React.Component {
 
@@ -98,11 +97,15 @@ export default class InsightPage extends React.Component {
             }
         }
         const map = React.createElement(Map, {
-            centre: [36.875, -1.251],
-            zoom: 13,
             minZoom: 8,
             maxZoom: 18,
-            data: this.state.showPopulation ? [...dataLayers, populationLayer] : dataLayers
+            data: this.state.showPopulation ? [...dataLayers, populationLayer] : dataLayers,
+            padding: {
+                top: 85,
+                bottom: 25,
+                left: 25,
+                right: 325
+            }
         })
         const filterbar = React.createElement(Filterbar, {
             data: this.props.slumSelected.stats,

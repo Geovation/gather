@@ -3,14 +3,20 @@
     "countries": [
         {
             "id": "ke",
-            "name": "Kenya"
+            "name": "Kenya",
+            "files": {
+                "outline": "ke-outline.geo.json"
+            }
         }
     ],
     "cities": [
         {
             "id": "nbo",
             "name": "Nairobi",
-            "country": "ke"
+            "country": "ke",
+            "files": {
+                "outline": "ke-nbo-outline.geo.json"
+            }
         }
     ],
     "slums": [
