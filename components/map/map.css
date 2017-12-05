@@ -8,3 +8,7 @@
     height: 100vh;
     z-index: -1;
 }
+
+.map.hidden canvas {
+    opacity: 0;
+}

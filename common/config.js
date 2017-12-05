@@ -6,28 +6,35 @@ export default class Config {
     static isLoaded = false
 
     static get() {
-        const cached = localStorage.getItem('cachedData')
+        const cached = localStorage.getItem('config')
         if (cached) return JSON.parse(cached)
         else throw new Error('Trying to get config before it has been loaded!')
     }
 
     static load() {
-        const dataFromFirebase = config.slums.map(slum => {
-            const resolved = Object.keys(slum.files).map(key => {
-                const file = slum.files[key]
-                return FirebaseUtils.resolveFile(file).then(url => {
-                    return { [key]: url }
+        const resolveSection = section => {
+            if (!Array.isArray(section)) return Promise.resolve(section)
+            const items = section.map(item => {
+                if (!item.files) return Promise.resolve(item)
+                return FirebaseUtils.resolveFiles(item.files).then(files => {
+                    return Object.assign(item, { files })
                 })
             })
-            return Promise.all(resolved).then(results => {
-                const files = Object.assign(...results)
-                return Object.assign(slum, { files })
+            return Promise.all(items)
+        }
+        const resolve = () => {
+            const sectionList = Object.keys(config).map(key => {
+                return resolveSection(config[key]).then(result => {
+                    return { [key]: result }
+                })
             })
-        })
-        return Promise.all(dataFromFirebase)
-            .then(data => {
-                const configResolved = Object.assign({ data }, config)
-                localStorage.setItem('cachedData', JSON.stringify(configResolved))
+            return Promise.all(sectionList).then(sections => {
+                return Object.assign(...sections)
+            })
+        }
+        return resolve()
+            .then(configResolved => {
+                localStorage.setItem('config', JSON.stringify(configResolved))
                 Config.isLoaded = true
                 return configResolved
             })

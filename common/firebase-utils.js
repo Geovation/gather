@@ -36,4 +36,15 @@ export default class FirebaseUtils {
         })
     }
 
+    static resolveFiles(files) {
+        const list = Object.keys(files).map(key => {
+            return FirebaseUtils.resolveFile(files[key]).then(url => {
+                return { [key]: url }
+            })
+        })
+        return Promise.all(list).then(file => {
+            return Object.assign(...file)
+        })
+    }
+
 }
