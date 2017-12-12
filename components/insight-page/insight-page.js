@@ -14,13 +14,6 @@ export default class InsightPage extends React.Component {
         this.togglePopulation = this.togglePopulation.bind(this)
     }
 
-    metresToPixels(metres, latitude, zoom) {
-        const earthCircumference = 40075017
-        const latitudeRadians = latitude * (Math.PI / 180)
-        const metresPerPixel = earthCircumference * Math.cos(latitudeRadians) / Math.pow(2, zoom + 8)
-        return metres / metresPerPixel
-    }
-
     togglePopulation() {
         this.setState({ showPopulation: !this.state.showPopulation })
     }
@@ -40,17 +33,17 @@ export default class InsightPage extends React.Component {
                         'interpolate',
                         ['linear'],
                         ['zoom'],
-                        8,  this.metresToPixels(250, 0,  8),
-                        9,  this.metresToPixels(250, 0,  9),
-                        10, this.metresToPixels(250, 0, 10),
-                        11, this.metresToPixels(250, 0, 11),
-                        12, this.metresToPixels(250, 0, 12),
-                        13, this.metresToPixels(250, 0, 13),
-                        14, this.metresToPixels(250, 0, 14),
-                        15, this.metresToPixels(250, 0, 15),
-                        16, this.metresToPixels(250, 0, 16),
-                        17, this.metresToPixels(250, 0, 17),
-                        18, this.metresToPixels(250, 0, 18)
+                        8,  25,
+                        9,  25,
+                        10, 25,
+                        11, 25,
+                        12, 25,
+                        13, 25,
+                        14, 25,
+                        15, 25,
+                        16, 25,
+                        17, 25,
+                        18, 25,
                     ],
                     'heatmap-color': [
                         'interpolate',

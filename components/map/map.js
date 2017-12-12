@@ -13,6 +13,8 @@ export default class Map extends React.Component {
             data: [],
             cache: []
         }
+        this.metresToPixels = this.metresToPixels.bind(this)
+        this.convert = this.convert.bind(this)
         this.resolve = this.resolve.bind(this)
         this.fit = this.fit.bind(this)
         this.update = this.update.bind(this)
@@ -29,6 +31,27 @@ export default class Map extends React.Component {
         if (dataChanged) this.update(this.props.data)
     }
 
+    metresToPixels(metres, latitude, zoom) {
+        const earthCircumference = 40075017
+        const latitudeRadians = latitude * (Math.PI / 180)
+        const metresPerPixel = earthCircumference * Math.cos(latitudeRadians) / Math.pow(2, zoom + 8)
+        return metres / metresPerPixel
+    }
+
+    convert(item) {
+        if (item.type !== 'heatmap' || item.paint['heatmap-radius'] === undefined) return item
+        if (item.paint['heatmap-radius'][2][0] !== 'zoom') return item
+        const latitude = (item.source.data.bbox[1] + item.source.data.bbox[3]) / 2
+        const items = item.paint['heatmap-radius'].slice(3)
+        const converted = items.map((item, i) => {
+            if (i % 2 === 0) return item
+            else return this.metresToPixels(item, latitude, items[i - 1])
+        })
+        const radiusConverted = item.paint['heatmap-radius'].slice(0, 3).concat(converted)
+        item.paint['heatmap-radius'] = radiusConverted
+        return item
+    }
+
     resolve(item) {
         if (!item.source.location) return Promise.resolve(item)
         const itemCached = this.state.cache.find(cached => cached.id === item.id)
@@ -37,8 +60,9 @@ export default class Map extends React.Component {
             .then(response => response.json())
             .then(data => {
                 const output = Object.assign(item, { source: { type: item.source.type, data } })
-                this.setState({ cache: this.state.cache.concat(output) })
-                return output
+                const converted = this.convert(output)
+                this.setState({ cache: this.state.cache.concat(converted) })
+                return converted
             })
     }
 
