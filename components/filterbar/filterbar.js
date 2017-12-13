@@ -4,9 +4,12 @@ import { default as HTML } from 'react-dom-factories'
 export default class Filterbar extends React.Component {
 
     render() {
+        const peoplePerToilet = (this.props.data.population / this.props.data.toilets).toLocaleString()
+        const withHandwashing = Math.round((this.props.data.toiletsWithHandwashing / this.props.data.toilets) * 100)
+        const withFSM = Math.round((this.props.data.toiletsWithFSM / this.props.data.toilets) * 100)
         return HTML.div({ className: 'filterbar' }, ...[
             HTML.p({}, 'Shared sanitation access:'),
-            HTML.p({ className: 'major' }, `${this.props.data.basicSharedSanitationAccess} %`),
+            HTML.p({ className: 'major' }, `${this.props.data.sharedSanitationAccess}%`),
             HTML.h3({}, 'Key investment areas:'),
             HTML.ol({}, ...[
                 HTML.li({}, 'New toilets'),
@@ -21,9 +24,9 @@ export default class Filterbar extends React.Component {
                 })),
             HTML.h3({}, 'Statistics:'),
             HTML.ul({}, ...[
-                HTML.li({}, `${this.props.data.peoplePerToilet.toLocaleString()} people per toilet`),
-                HTML.li({}, `${this.props.data.handwashingFacilities}% of toilets have handwashing facilities`),
-                HTML.li({}, `${this.props.data.faecalSludgeManagementServices}% of toilets have faecal sludge management services`)
+                HTML.li({}, `${peoplePerToilet} people per toilet`),
+                HTML.li({}, `${withHandwashing}% of toilets have handwashing facilities`),
+                HTML.li({}, `${withFSM}% of toilets have faecal sludge management services`)
             ])
         ])
     }

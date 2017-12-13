@@ -28,10 +28,11 @@
                 "toilets": "ke-nbo-mathare-toilets.geo.json"
             },
             "stats": {
-                "basicSharedSanitationAccess": 3,
-                "peoplePerToilet": 1800,
-                "handwashingFacilities": 19,
-                "faecalSludgeManagementServices": 100
+                "sharedSanitationAccess": 3,
+                "population": 216000,
+                "toilets": 120,
+                "toiletsWithHandwashing": 23,
+                "toiletsWithFSM": 120
             }
         }
     ]
