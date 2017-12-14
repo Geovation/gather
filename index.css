@@ -6,7 +6,7 @@
 @import url('/components/chooser/chooser.css');
 @import url('/components/selector-page/selector-page.css');
 @import url('/components/insight-page/insight-page.css');
-@import url('/components/login/login.css');
+@import url('/components/login-page/login-page.css');
 
 body {
     margin: 0;
@@ -19,6 +19,7 @@ a {
 }
 
 button {
+    display: block;
     background: #b71e5a;
     border: none;
     border-radius: 8px;
@@ -42,6 +43,22 @@ button:active {
 button[disabled] {
     background: #bdc2ca;
     cursor: not-allowed;
+}
+
+label {
+    display: block;
+    color: #4a5356;
+}
+
+input {
+    width: calc(100% - 30px);
+    height: 30px;
+    background: #e7ebef;
+    margin-top: 6px;
+    border: none;
+    border-radius: 8px;
+    padding: 5px 15px;
+    color: inherit;
 }
 
 .error {

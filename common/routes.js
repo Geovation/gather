@@ -5,7 +5,7 @@ import { default as HTML } from 'react-dom-factories'
 import Topbar from '/components/topbar/topbar.js'
 import SelectorPage from '/components/selector-page/selector-page.js'
 import InsightPage from '/components/insight-page/insight-page.js'
-import LoginForm from '/components/login/login.js'
+import LoginPage from '/components/login-page/login-page.js'
 import FirebaseUtils from '/common/firebase-utils.js'
 import Config from '/common/config.js'
 
@@ -37,7 +37,7 @@ export default class Routes {
         })
 
         Page('/login', context => {
-            const page = React.createElement(LoginForm, {})
+            const page = React.createElement(LoginPage, {})
             main.classList.remove('loading')
             ReactDOM.render(page, main)
         })

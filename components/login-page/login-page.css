@@ -1,0 +1,53 @@
+.login-page {
+    background: url('background.png') round;
+    width: 100vw;
+    height: 100vh;
+}
+
+.login-page > img {
+    display: block;
+    margin: 0 auto;
+    padding-top: 8%;
+    text-align: center;
+}
+
+.login-page form {
+    width: 210px;
+    background: #f9f9f9;
+    box-shadow: 0 7px 6px 0 rgba(0, 0, 0, 0.05);
+    margin: 65px auto 0 auto;
+    border-radius: 8px;
+    padding: 14px 84px 35px 84px;
+}
+
+.login-page form h2 {
+    margin: 0;
+    color: #b00048;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.login-page form h2::after {
+    content: '';
+    display: block;
+    width: 20px;
+    margin: 4px auto 0 auto;
+    border-bottom: 2px solid #e2e2e2;
+}
+
+.login-page form fieldset {
+    margin-top: 47px;
+    border: none;
+    padding: 0;
+}
+
+.login-page form fieldset label + label {
+    margin-top: 8px;
+}
+
+.login-page form fieldset button {
+    margin: 37px auto 0 auto;
+    padding: 11px 44px;
+}

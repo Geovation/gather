@@ -57,7 +57,7 @@ export default class Topbar extends React.Component {
 
     render() {
         const topbar = HTML.div({ className: 'topbar' }, ...[
-            HTML.a({ className: 'logo', href: '/' }, HTML.img({ src: 'images/logo.svg' })),
+            HTML.a({ className: 'logo', href: '/' }, HTML.img({ src: '/components/topbar/logo.svg' })),
             HTML.a({ className: 'selector', href: '/select' }, 'Change location'),
             HTML.span({ className: 'viewing' }, 'Viewing:'),
             HTML.span({ className: 'breadcrumbs' }, ...[
